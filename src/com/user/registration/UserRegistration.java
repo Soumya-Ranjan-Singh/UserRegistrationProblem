@@ -8,6 +8,7 @@
 //      (Rule 1 – minimum 8 Characters)
 //      (Rule 2 – Should have at least 1 Upper Case)
 //      (Rule 3 - Should have at least 1 numeric number in the password)
+//      (Rule 4 - Has exactly 1 Special Character)
 
 package com.user.registration;
 
@@ -78,13 +79,13 @@ public class UserRegistration {
     // Method to check password
     public static boolean validPassword(String password) {
         boolean flag = false;
-        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{7,20}$";
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$";
 
 //        ^ represents starting character of the string.
 //        (?=.*[0-9]) represents a digit must occur at least once.
 //        (?=.*[a-z]) represents a lower case alphabet must occur at least once.
 //        (?=.*[A-Z]) represents an upper case alphabet that must occur at least once.
-//        (?=.*[@#$%^&-+=()] represents a special character that must occur at least once.
+//        (?=.*[@#$%^&-+=()]) represents a special character that must occur at least once.
 //        (?=\\S+$) white spaces don’t allowed in the entire string.
 //        .{8, 20} represents at least 8 characters and at most 20 characters.
 //        $ represents the end of the string.
