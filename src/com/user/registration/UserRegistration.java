@@ -4,6 +4,8 @@
 //            and 2 optional (xyz & in) with precise @ and . positions)
 //UC - 4 is to As a User need to follow pre-defined Mobile Format. (Mobile Format - E.g. 91 9919819801 -
 //            Country code follow by space and 10-digit number)
+//UC - 5 is to As a User need to follow pre-defined Password rules.
+//      (Rule 1 – minimum 8 Characters)
 
 package com.user.registration;
 
@@ -23,10 +25,13 @@ public class UserRegistration {
         String emailID = scan.nextLine();
         System.out.println("Enter the User's mobile no");
         String mobileNo = scan.nextLine();
+        System.out.println("Enter the User's password");
+        String password = scan.nextLine();
         System.out.println("Given first name : " + firstName + " is valid : " + validName(firstName));
         System.out.println("Given last name : " + lastName + " is valid : " + validName(lastName));
         System.out.println("Given email id : " + emailID + " is valid : " + validEmail(emailID));
         System.out.println("Given mobile no : " + mobileNo + " is valid : " + validPhoneNo(mobileNo));
+        System.out.println("Given password : " + password + " is valid : " + validPassword(password));
     }
 
     // Method to check username
@@ -63,6 +68,29 @@ public class UserRegistration {
         for(int i = 0; i < phoneNo.length(); i++)
         {
             Matcher matcher=pattern.matcher(phoneNo);
+            flag = matcher.matches();
+        }
+        return flag;
+    }
+
+    // Method to check password
+    public static boolean validPassword(String password) {
+        boolean flag = false;
+        String regex = "^[a-z/A-Z]{8,20}$";
+
+//        ^ represents starting character of the string.
+//        (?=.*[0-9]) represents a digit must occur at least once.
+//        (?=.*[a-z]) represents a lower case alphabet must occur at least once.
+//        (?=.*[A-Z]) represents an upper case alphabet that must occur at least once.
+//        (?=.*[@#$%^&-+=()] represents a special character that must occur at least once.
+//        (?=\\S+$) white spaces don’t allowed in the entire string.
+//        .{8, 20} represents at least 8 characters and at most 20 characters.
+//        $ represents the end of the string.
+
+        Pattern pattern = Pattern.compile(regex);
+        for(int i = 0; i < password.length(); i++)
+        {
+            Matcher matcher=pattern.matcher(password);
             flag = matcher.matches();
         }
         return flag;
