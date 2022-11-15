@@ -6,6 +6,8 @@
 //            Country code follow by space and 10-digit number)
 //UC - 5 is to As a User need to follow pre-defined Password rules.
 //      (Rule 1 – minimum 8 Characters)
+//      (Rule 2 – Should have at least 1 Upper Case)
+//      (Rule 3 - Should have at least 1 numeric number in the password)
 
 package com.user.registration;
 
@@ -15,7 +17,7 @@ import java.util.regex.Pattern;
 
 public class UserRegistration {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter the User's First Name");
         String firstName = scan.nextLine();
@@ -76,7 +78,7 @@ public class UserRegistration {
     // Method to check password
     public static boolean validPassword(String password) {
         boolean flag = false;
-        String regex = "^[a-z/A-Z]{8,20}$";
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{7,20}$";
 
 //        ^ represents starting character of the string.
 //        (?=.*[0-9]) represents a digit must occur at least once.
